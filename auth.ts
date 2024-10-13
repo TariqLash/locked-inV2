@@ -68,6 +68,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
   },
+  
+  secret: process.env.NEXT_PUBLIC_SECRET,
 
   callbacks: {
     async session({ session, token }) {
