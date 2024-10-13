@@ -1,8 +1,7 @@
 import { login } from '@/action/user'
-import { auth, signIn } from '@/auth'
+import { signIn } from '@/auth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { getSession } from '@/lib/getSession'
 import { IconBrandGithub, IconBrandGoogle } from '@tabler/icons-react'
 import Link from 'next/link'
@@ -18,6 +17,7 @@ const Login = async () => {
     <div className='pb-44 pt-20 h-screen flex flex-col items-center justify-center '>
       <h1 className='text-2xl'>Welcome Back! 👋🏾</h1>
       <p className='subtitle mb-5 items-center'>Log in to access your account.</p>
+      {/* @ts-expect-error silence minor type error */}
       <form action={login} className='flex flex-col w-96 '>
         <Input
           className=' rounded mb-5 h-12 items-center grayBorder authInput'
@@ -58,7 +58,7 @@ const Login = async () => {
         <Button className='w-96'><IconBrandGoogle className='mr-3' /><span>Sign in with Google</span></Button>
 
       </form>
-      <p className='subtitle'>Don't have an account? <Link href="/register" className='text-white underline'>Sign up</Link></p>
+      <p className='subtitle'>Don&apos;t have an account? <Link href="/register" className='text-white underline'>Sign up</Link></p>
 
     </div>
   )

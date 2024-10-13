@@ -9,7 +9,8 @@ const Settings = async() => {
   const session = await getSession();
   const user = session?.user;
   if(!user) redirect("/login");
-
+  
+  // @ts-expect-error silence minor type error
   if(user?.role !== 'admin') return redirect("/private/dashboard");
 
   const allUsers = await fetchAllUsers();

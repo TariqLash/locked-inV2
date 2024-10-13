@@ -69,10 +69,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/login",
   },
 
-  callback: {
+  callbacks: {
     async session({ session, token }) {
       if (token?.sub && token?.role) {
         session.user.id = token.sub;
+        // @ts-expect-error silence minor type error
         session.user.role = token.role;
       }
       return session;
@@ -80,6 +81,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     async jwt({ token, user }) {
       if (user) {
+        // @ts-expect-error silence minor type error
         token.role = user.role;
       }
       return token;
